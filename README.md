@@ -2,6 +2,9 @@
 
 > Freemarker renderer plugin for grunt.
 
+[![NPM](https://nodei.co/npm/grunt-freemarker.png?downloads=true&stars=true)](https://nodei.co/npm/grunt-freemarker/)
+
+
 ## Getting Started
 This plugin requires Grunt `~0.4.2`
 
