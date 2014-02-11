@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Grunt-freemarker by ijse</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Grunt-freemarker</h1>
+        <h2>Freemarker renderer plugin for grunt.</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/ijse/grunt-freemarker/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/ijse/grunt-freemarker/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/ijse/grunt-freemarker" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a name="grunt-freemarker" class="anchor" href="#grunt-freemarker"><span class="octicon octicon-link"></span></a>grunt-freemarker</h1>
+
+<blockquote>
+<p>Freemarker renderer plugin for grunt.</p>
+</blockquote>
+
+<h2>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<p>This plugin requires Grunt <code>~0.4.2</code></p>
+
+<p>If you haven't used <a href="http://gruntjs.com/">Grunt</a> before, be sure to check out the <a href="http://gruntjs.com/getting-started">Getting Started</a> guide, as it explains how to create a <a href="http://gruntjs.com/sample-gruntfile">Gruntfile</a> as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:</p>
+
+<pre lang="shell"><code>npm install grunt-freemarker --save-dev
+</code></pre>
+
+<p>Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">'grunt-freemarker'</span><span class="p">);</span>
+</pre></div>
+
+<h2>
+<a name="the-freemarker-task" class="anchor" href="#the-freemarker-task"><span class="octicon octicon-link"></span></a>The "freemarker" task</h2>
+
+<h3>
+<a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h3>
+
+<p>In your project's Gruntfile, add a section named <code>freemarker</code> to the data object passed into <code>grunt.initConfig()</code>.</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
+  <span class="nx">freemarker</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+      <span class="c1">// Task-specific options go here.</span>
+    <span class="p">},</span>
+    <span class="nx">your_target</span><span class="o">:</span> <span class="p">{</span>
+      <span class="c1">// Target-specific file lists and/or options go here.</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+</pre></div>
+
+<h3>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h3>
+
+<h4>
+<a name="optionsviews" class="anchor" href="#optionsviews"><span class="octicon octicon-link"></span></a>options.views</h4>
+
+<p>Type: <code>String</code>
+Default value: <code>views</code></p>
+
+<p>The folder where all views in.</p>
+
+<h4>
+<a name="optionsout" class="anchor" href="#optionsout"><span class="octicon octicon-link"></span></a>options.out</h4>
+
+<p>Type: <code>String</code>
+Default value: <code>public</code></p>
+
+<p>The folder where export to.</p>
+
+<h4>
+<a name="optionsencoding" class="anchor" href="#optionsencoding"><span class="octicon octicon-link"></span></a>options.encoding</h4>
+
+<p>Type: <code>String</code>
+Default value: <code>utf-8</code></p>
+
+<p>View's encode.</p>
+
+<h3>
+<a name="usage-examples" class="anchor" href="#usage-examples"><span class="octicon octicon-link"></span></a>Usage Examples</h3>
+
+<p>The view and dest file defined in <code>mocks/simple.js</code>:</p>
+
+<div class="highlight highlight-js"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">view</span><span class="o">:</span> <span class="s2">"/simple.ftl"</span><span class="p">,</span>
+  <span class="nx">out</span><span class="o">:</span> <span class="s2">"/simple.html"</span><span class="p">,</span>
+  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">"ijse"</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+
+<p>and <code>views/simple.ftl</code>:</p>
+
+<div class="highlight highlight-text"><pre>view sample
+
+${name}
+</pre></div>
+
+<p>Then, the result would be <code>public/simple.html</code>:</p>
+
+<pre><code>view sample
+
+ijse
+</code></pre>
+
+<h4>
+<a name="default-options" class="anchor" href="#default-options"><span class="octicon octicon-link"></span></a>Default Options</h4>
+
+<div class="highlight highlight-js"><pre><span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
+  <span class="nx">freemarker</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">options</span><span class="o">:</span> <span class="p">{},</span>
+    <span class="nx">src</span><span class="o">:</span> <span class="s2">"mocks/*.js"</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+</pre></div>
+
+<h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using <a href="http://gruntjs.com/">Grunt</a>.</p>
+
+<h2>
+<a name="release-history" class="anchor" href="#release-history"><span class="octicon octicon-link"></span></a>Release History</h2>
+
+<p><em>(Nothing yet)</em></p>
+
+<p><a href="https://bitdeli.com/free" title="Bitdeli Badge"><img src="https://d2weczhvl823v0.cloudfront.net/ijse/grunt-freemarker/trend.png" alt="Bitdeli Badge"></a></p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
