@@ -1,23 +1,23 @@
 {
   "name": "grunt-freemarker",
   "description": "Freemarker renderer plugin for grunt.",
-  "version": "0.1.0",
-  "homepage": "https://github.com/liyi_nad/grunt-freemarker",
+  "version": "0.1.1",
+  "homepage": "https://github.com/ijse/grunt-freemarker",
   "author": {
     "name": "ijse",
     "email": "i@ijser.cn"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/liyi_nad/grunt-freemarker.git"
+    "url": "git://github.com/ijse/grunt-freemarker.git"
   },
   "bugs": {
-    "url": "https://github.com/liyi_nad/grunt-freemarker/issues"
+    "url": "https://github.com/ijse/grunt-freemarker/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/liyi_nad/grunt-freemarker/blob/master/LICENSE-MIT"
+      "url": "https://github.com/ijse/grunt-freemarker/blob/master/LICENSE-MIT"
     }
   ],
   "engines": {
@@ -36,7 +36,7 @@
     "grunt": "~0.4.2"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin", "freemarker"
   ],
   "dependencies": {
     "iconv-lite": "~0.2.11"
