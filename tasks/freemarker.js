@@ -53,8 +53,11 @@ module.exports = function(grunt) {
     // Defaults options.
     var options = this.options({
       views: "views",
+      out: "public",
       encoding: "utf-8"
     });
+
+    var publicFolder = path.resolve(options.out);
 
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
@@ -71,6 +74,8 @@ module.exports = function(grunt) {
           // Load the mock
           var tMock = require(path.resolve(filepath));
 
+          var destFile = path.join(publicFolder, tMock.out || tMock.view.replace(path.extname(tMock.view),".html") );
+
           // Get results
           processTemplate({
             data: tMock.data,
@@ -86,8 +91,8 @@ module.exports = function(grunt) {
               }
 
               // Write to file
-              grunt.file.write(f.dest, result);
-              grunt.log.writeln('File "' + f.dest + '" created.');
+              grunt.file.write(destFile, result);
+              grunt.log.writeln('File "' + destFile + '" created.');
               done(true);
             }
           });

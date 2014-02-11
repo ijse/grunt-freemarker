@@ -26,13 +26,10 @@ In your project's Gruntfile, add a section named `freemarker` to the data object
 grunt.initConfig({
   freemarker: {
     options: {
-      views: "views", // Views folder
-      encoding: "utf-8" // Default encoding for views
+      // Task-specific options go here.
     },
     your_target: {
-      files: {
-          "public/simple.html": "mocks/simple.js"
-      }
+      // Target-specific file lists and/or options go here.
     },
   },
 });
@@ -46,6 +43,12 @@ Default value: `views`
 
 The folder where all views in.
 
+#### options.out
+Type: `String`
+Default value: `public`
+
+The folder where export to.
+
 #### options.encoding
 Type: `String`
 Default value: `utf-8`
@@ -54,10 +57,11 @@ View's encode.
 
 ### Usage Examples
 
-In `mocks/simple.js`:
+The view and dest file defined in `mocks/simple.js`:
 ```js
 module.exports = {
   view: "/simple.ftl",
+  out: "/simple.html",
   data: {
     name: "ijse"
   }
@@ -70,7 +74,7 @@ view sample
 ${name}
 ```
 
-Then, the result will be `public/simple.html`:
+Then, the result would be `public/simple.html`:
 ```
 view sample
 
@@ -83,9 +87,7 @@ ijse
 grunt.initConfig({
   freemarker: {
     options: {},
-    files: {
-      "public/simple.html": "mocks/simple.js"
-    },
+    src: "mocks/*.js"
   },
 });
 ```
