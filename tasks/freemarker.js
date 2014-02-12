@@ -88,6 +88,7 @@ module.exports = function(grunt) {
               if(err) {
                 grunt.log.warn('Process Mock file' + filepath + '" error!');
                 done(false);
+                return false;
               }
 
               // Write to file
