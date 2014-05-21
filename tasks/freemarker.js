@@ -53,8 +53,8 @@ module.exports = function(grunt) {
     // Defaults options.
     var options = this.options({
       views: "views",
-      out: "public",
-      encoding: "utf-8"
+      out: this.data.out || "public",
+      encoding: this.data.encoding || "utf-8"
     });
 
     var publicFolder = path.resolve(options.out);
