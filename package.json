@@ -1,7 +1,7 @@
 {
   "name": "grunt-freemarker",
   "description": "Freemarker renderer plugin for grunt.",
-  "version": "0.1.1",
+  "version": "0.1.5",
   "homepage": "https://github.com/ijse/grunt-freemarker",
   "author": {
     "name": "ijse",
