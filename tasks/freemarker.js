@@ -48,6 +48,7 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask('freemarker', 'Freemarker renderer plugin for grunt.', function() {
 
+    var count = 0;
     var done = this.async();
 
     // Defaults options.
@@ -81,7 +82,7 @@ module.exports = function(grunt) {
           mockList = mockList.concat(mockData);
 
           mockList.forEach(function(tMock) {
-
+            count++;
             var destFile = path.join(publicFolder, tMock.out || tMock.view.replace(path.extname(tMock.view),".html") );
 
             // Get results
@@ -93,6 +94,7 @@ module.exports = function(grunt) {
               },
               ftlFile: tMock.view,
               callback: function(err, result) {
+                count--;
                 if(err) {
                   grunt.log.warn('Process Mock file' + filepath + '" error!');
                   done(false);
@@ -102,7 +104,9 @@ module.exports = function(grunt) {
                 // Write to file
                 grunt.file.write(destFile, result);
                 grunt.log.writeln('File "' + destFile + '" created.');
-                done(true);
+                if (count < 1){
+                  done(true);
+                }
               }
             });
 
