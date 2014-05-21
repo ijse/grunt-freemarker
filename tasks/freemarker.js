@@ -72,30 +72,41 @@ module.exports = function(grunt) {
           }
         }).map(function(filepath) {
           // Load the mock
-          var tMock = require(path.resolve(filepath));
+          var mockData = require(path.resolve(filepath));
+          var mockList = [];
+          // if(!mockData instanceof Array) {
+          //   tMock = [ mockData ]
+          // }
 
-          var destFile = path.join(publicFolder, tMock.out || tMock.view.replace(path.extname(tMock.view),".html") );
+          mockList = mockList.concat(mockData);
 
-          // Get results
-          processTemplate({
-            data: tMock.data,
-            settings: {
-              encoding: options.encoding,
-              viewFolder: path.resolve(options.views)
-            },
-            ftlFile: tMock.view,
-            callback: function(err, result) {
-              if(err) {
-                grunt.log.warn('Process Mock file' + filepath + '" error!');
-                done(false);
-                return false;
+          mockList.forEach(function(tMock) {
+
+            var destFile = path.join(publicFolder, tMock.out || tMock.view.replace(path.extname(tMock.view),".html") );
+
+            // Get results
+            processTemplate({
+              data: tMock.data,
+              settings: {
+                encoding: options.encoding,
+                viewFolder: path.resolve(options.views)
+              },
+              ftlFile: tMock.view,
+              callback: function(err, result) {
+                if(err) {
+                  grunt.log.warn('Process Mock file' + filepath + '" error!');
+                  done(false);
+                  return false;
+                }
+
+                // Write to file
+                grunt.file.write(destFile, result);
+                grunt.log.writeln('File "' + destFile + '" created.');
+                done(true);
               }
+            });
 
-              // Write to file
-              grunt.file.write(destFile, result);
-              grunt.log.writeln('File "' + destFile + '" created.');
-              done(true);
-            }
+
           });
 
         });
