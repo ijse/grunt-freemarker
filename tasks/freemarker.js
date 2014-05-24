@@ -73,7 +73,11 @@ module.exports = function(grunt) {
           }
         }).map(function(filepath) {
           // Load the mock
-          var mockData = require(path.resolve(filepath));
+          var file = path.resolve(filepath);
+          // kill require cache, reload file newest content
+          delete require.cache[require.resolve(file)];
+          var mockData = require(file);
+
           var mockList = [];
           // if(!mockData instanceof Array) {
           //   tMock = [ mockData ]
