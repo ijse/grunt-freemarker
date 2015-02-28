@@ -31,12 +31,12 @@ var processTemplate = function(args) {
 
   if(args.callback) {
     cmd.stdout.on("data", function(data) {
-      // args.callback(null, iconv.decode(data, 'gbk'));
-      resultData += iconv.decode(data, 'gbk');
+      // args.callback(null, iconv.decode(data, settings.encoding));
+      resultData += iconv.decode(data, settings.encoding);
     });
     cmd.stderr.on("data", function(data) {
       // Print error message
-      console.log(iconv.decode(data, 'gbk'));
+      console.log(iconv.decode(data, settings.encoding));
     });
     cmd.stdout.on("end", function() {
       args.callback(null, resultData);
