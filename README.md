@@ -83,6 +83,46 @@ view sample
 ijse
 ```
 
+#### Using JavaScript Objects as data
+The `data` attribute can accept an array of JavaScript files instead of json data. This allows you to mock Java methods used in your freemarker.
+
+The javascript file defined in `mocks/simple.js`:
+```js
+module.exports = {
+  view: "/simple.ftl",
+  out: "/simple.html",
+  data: ["data.js"]
+};
+```
+`data.js` in the same folder as `mocks/simple.js`:
+```js
+({
+    name: "ijse",
+    greet: function(name) {
+      return "Hello " + name;
+    }
+})
+```
+and `views/simple.ftl`:
+```text
+view sample
+
+${name}
+
+${greet("istenes")}
+```
+
+Then, the result would be `public/simple.html`:
+```
+view sample
+
+ijse
+
+Hello istenes
+```
+
+More advanced JavaScript objects can be made. All the JavaScript code is executed under Rhinos context so we can\'t use node features like `path`, `http` or `require`. However, as the Script runs in Rhinos context you get all Rhinos extra methods and properties, see [Rhino on MDN](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Rhino/Shell#Predefined_Properties)
+
 #### Default Options
 
 ```js
