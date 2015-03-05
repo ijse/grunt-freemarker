@@ -93,8 +93,6 @@ module.exports = function(grunt) {
                 //if the data is an array, then we need to add the relative path to the root.
                 for(var i = 0; i < tMock.data.length; i++) {
                   tMock.data[i] = path.join(path.dirname(file), tMock.data[i]);
-                  console.log(tMock.data[i])
-                  //tMock.data[i] = file
                 }
               }
 
