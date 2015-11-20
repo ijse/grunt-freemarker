@@ -70,14 +70,14 @@ module.exports = {
 };
 ```
 and `views/simple.ftl`:
-```text
+```ftl
 view sample
 
 ${name}
 ```
 
 Then, the result would be `public/simple.html`:
-```
+```html
 view sample
 
 ijse
@@ -104,7 +104,7 @@ module.exports = {
 })
 ```
 and `views/simple.ftl`:
-```text
+```ftl
 view sample
 
 ${name}
@@ -113,7 +113,7 @@ ${greet("istenes")}
 ```
 
 Then, the result would be `public/simple.html`:
-```
+```html
 view sample
 
 ijse
@@ -122,6 +122,49 @@ Hello istenes
 ```
 
 More advanced JavaScript objects can be made. All the JavaScript code is executed under Rhinos context so we can\'t use node features like `path`, `http` or `require`. However, as the Script runs in Rhinos context you get all Rhinos extra methods and properties, see [Rhino on MDN](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Rhino/Shell#Predefined_Properties)
+
+#### Importing other templates as dependencies
+Another attribute, `deps`, accepts a array of paths to `.ftl` files that the main `.ftl` file is dependent upon. These paths are all relative to the options.views path and must be specified as such.
+
+The javascript file defined in `mocks/simple.js`:
+```js
+module.exports = {
+  deps: ["deps/another/functions.ftl", "deps/macros.ftl"],
+  view: "/simple.ftl",
+  out: "/simple.html",
+  data: ["data.js"]
+};
+```
+`data.js` in the same folder as `mocks/simple.js`:
+```js
+({
+    name: "Alof"
+})
+```
+
+where `views/deps/another/functions.ftl`:
+```ftl
+[#function aFunction name]
+	[#return name?replace("A", "O") /]
+[/#function]
+```
+
+and `views/deps/macros.ftl`:
+```ftl
+[#macro aMacro name]
+<strong>Hi there, ${name}</strong>
+[/#macro]
+```
+
+and `views/simple.ftl`:
+```ftl
+macros.aMacro(functions.aFunction(name))
+```
+
+Then, the result would be `public/simple.html`:
+```html
+<strong>Hi there, Olof</strong>
+```
 
 #### Default Options
 
