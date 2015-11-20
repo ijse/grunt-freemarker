@@ -98,13 +98,6 @@ module.exports = function(grunt) {
                 }
               }
 
-              if(tMock.deps instanceof Array) {
-                // Fix path
-                for(var i = 0; i < tMock.deps.length; i++) {
-                  tMock.deps[i] = path.join("../", tMock.deps[i]);
-                }
-              }
-
             // Get results
             processTemplate({
               deps: tMock.deps,
