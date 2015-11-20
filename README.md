@@ -43,13 +43,13 @@ grunt.initConfig({
 Type: `String`
 Default value: `views`
 
-The folder where all views in.
+The folder where all views are placed.
 
 #### options.out
 Type: `String`
 Default value: `public`
 
-The folder where export to.
+The folder where to the resulting .html files are exported to.
 
 #### options.encoding
 Type: `String`
@@ -124,7 +124,7 @@ Hello istenes
 More advanced JavaScript objects can be made. All the JavaScript code is executed under Rhinos context so we can\'t use node features like `path`, `http` or `require`. However, as the Script runs in Rhinos context you get all Rhinos extra methods and properties, see [Rhino on MDN](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Rhino/Shell#Predefined_Properties)
 
 #### Importing other templates as dependencies
-Another attribute, `deps`, accepts a array of paths to `.ftl` files that the main `.ftl` file is dependent upon. These paths are all relative to the options.views path and must be specified as such.
+Another attribute, `deps`, accepts a array of paths to `.ftl` files that the main `.ftl` file is dependent upon. These paths are all relative to the options.views path and must be specified as such. These files are then *imported* into the Freemarker Template processing environment, emulating the behavior of the Freemarker import statement.
 
 The javascript file defined in `mocks/simple.js`:
 ```js
