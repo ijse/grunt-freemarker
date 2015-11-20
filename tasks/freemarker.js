@@ -99,9 +99,9 @@ module.exports = function(grunt) {
               }
 
               if(tMock.deps instanceof Array) {
-                //if the deps is an array, then we need to add the relative path to the root.
+                // Fix path
                 for(var i = 0; i < tMock.deps.length; i++) {
-                  tMock.deps[i] = path.join(path.dirname(file), tMock.deps[i]);
+                  tMock.deps[i] = path.join("../", tMock.deps[i]);
                 }
               }
 
