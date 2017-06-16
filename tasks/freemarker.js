@@ -12,7 +12,7 @@ var spawn = require('child_process').spawn;
 var iconv = require("iconv-lite");
 var path = require("path");
 
-var jarFile = path.join(__dirname, "../jar/FMtoll-0.5.jar");
+var jarFile = path.join(__dirname, "../jar/FMtoll-0.6.jar");
 
 //
 // args:
@@ -21,13 +21,15 @@ var jarFile = path.join(__dirname, "../jar/FMtoll-0.5.jar");
 //  ftlFile - template file name
 var processTemplate = function(args) {
   var dataModel = JSON.stringify(args.data);
+  var deps = JSON.stringify(args.deps);
   var settings = JSON.stringify(args.settings);
   var resultData = "";
 
   var cmd = spawn('java', ["-jar", jarFile,
       settings,
       args.ftlFile,
-      dataModel ]);
+      dataModel,
+      deps ]);
 
   if(args.callback) {
     cmd.stdout.on("data", function(data) {
@@ -93,13 +95,12 @@ module.exports = function(grunt) {
                 //if the data is an array, then we need to add the relative path to the root.
                 for(var i = 0; i < tMock.data.length; i++) {
                   tMock.data[i] = path.join(path.dirname(file), tMock.data[i]);
-                  console.log(tMock.data[i])
-                  //tMock.data[i] = file
                 }
               }
 
             // Get results
             processTemplate({
+              deps: tMock.deps,
               data: tMock.data,
               settings: {
                 encoding: options.encoding,
